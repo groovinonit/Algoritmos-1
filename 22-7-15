@@ -1,0 +1,159 @@
+// Algoritmos 1
+// Paulo Escobar
+
+// Ejercicio 1 - Arrays
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 100
+using namespace std;
+
+void cargar(int vec[], int n);
+void mostrar(int vec[], int n);
+void eliminar(int vec[], int n, int e);
+
+void main()
+{
+  int n, vec[MAX], e;
+  do
+    {cout<<"Ingrese tamaño: ";
+     cin>>n;
+    }while(n>MAX) || (n<0); 
+  cargar(vec,n);
+  mostrar(vec,n);
+  cout<<endl<<"Ingrese numero para eliminar: ";
+  cin>>e;
+  eliminar(vec,n,e);
+  cout<<endl<<"Nuevo vector: "<<endl;
+  mostrar(vec,n);
+  getch();
+}
+
+void cargar(int vec[], int n)
+{ int i;
+  for(i=0; i<n; i++)
+    {cout<<endl<<"Ingrese V["<<(i+1)<<"]: ";
+     cin>>vec[i];
+    }
+}
+
+void mostrar(int vec[], int n)
+{ int i;
+  for(i=0; i<n; i++)
+   cout<<endl<<"V["<<(i+1)<<"]: "<<vec[i];
+}
+
+void eliminar(int vec[], int n, int e)
+{int i, j;
+ for(i=0; i<n; i++)
+    {if(vec[i]==e)
+        {for(j=i+1; j<n; j++)
+            vec[i]=vec[j];
+         n = n-1;
+         i = i-1;
+        }
+    }
+}
+
+
+
+// Ejercicio 2 - Vector de vectores
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 100
+using namespace std;
+
+struct tipo_vector
+{
+  int V[];
+};
+
+void cargar(tipo_vector vec[], int n);
+void mostrar(tipo_vector vec[], int n);
+void espejo(tipo_vector vec[], int n);
+
+void main()
+{
+  tipo_vector vec[MAX], int n;
+  do
+   {cout<<"Ingrese tamaño de vectores: ";
+    cin>>n;
+  }while(n>MAX) || (n<0);
+  cargar(vec,n);
+  mostrar(vec,n);
+  cout<<endl<<"El espejo del vector de vectores es el siguiente:"<<endl;
+  espejo(vec,n);
+  mostrar(vec,n);
+  getch();
+}
+
+void cargar(tipo_vector vec[], int n)
+{int i, j;
+ for(i=0; i<n; i++)
+   {for(j=0; j<n; j++)
+      {cout<<endl<<"Ingrese valor de elemento ["<<(i+1)<<"]["<<(j+1)<<"]: ";
+       cin>> vec[i].V[j];
+      }
+   }
+}
+
+void mostrar(tipo_vector vec[], int n)
+{int i, j;
+ for(i=0; i<n; i++)
+   {for(j=0; j<n; j++)
+      cout<<endl<<"V["<<(i+1)<<"]["<<(j+1)<<"]: "<<vec[i].V[j];
+   }
+}
+
+void espejo(tipo_vector vec[], int n)
+{int i,j,aux; tipo_vector AUX[];
+ for(i=0; i<(n/2); i++)
+    {for(j=0; j<(n/2); j++)
+        {aux = vec[i].V[j];
+         vec[i].V[j] = vec[i].V[n-i-1];
+         vec[i].V[n-i-1] = aux;
+        }
+     AUX[] = vec[i];
+     vec[i] = vec[n-i-1];
+     vec[n-i-1] = vec[i];
+    }
+}
+
+
+
+// Ejercicio 3 - Cadenas
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool palindromo(string a);
+
+void main()
+{
+ string a; bool x;
+ cout<<"Ingrese una palabra: ";
+ getline(cin,a);
+ x = palindromo(a);
+ if(x==true)
+    cout<<end<<"La palabra es palindromo";
+ else
+    cout<<endl<<"La palabra no es palindromo";
+}
+
+bool palindromo(string a)
+{string aux; int i,n;
+ n = a.length();
+ for(i=0; i<n; i++)
+    aux[i] = a[n-i-1];
+ if(a.compare(aux)==0)
+    return true;
+ else
+    return false;
+}
+     
